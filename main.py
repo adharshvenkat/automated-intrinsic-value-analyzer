@@ -1,6 +1,11 @@
 # main.py
 import yfinance as yf
 import pandas as pd
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 def get_sp500_tickers():
     """
@@ -73,19 +78,16 @@ def calculate_intrinsic_value(ticker_symbol):
         print(f"[{ticker_symbol}] An error occurred: {e}")
         return None, None
 
-if __name__ == "__main__":
-    top_companies = get_sp500_tickers()
-    results = []
+MAG7 = {"AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "TSLA", "META"}
 
-    # Analyze the first 15 companies from the list
-    for ticker in top_companies[:15]:
+def analyze_companies(tickers):
+    results = []
+    for ticker in tickers:
         print(f"\nAnalyzing {ticker}...")
         intrinsic_value, current_price = calculate_intrinsic_value(ticker)
-        
         if intrinsic_value is not None and current_price is not None:
             margin_of_safety = (1 - (current_price / intrinsic_value)) * 100 if intrinsic_value > 0 else -100
             verdict = "Undervalued" if intrinsic_value > current_price else "Overvalued"
-            
             results.append({
                 "Ticker": ticker,
                 "Intrinsic Value": f"${intrinsic_value:,.2f}",
@@ -93,10 +95,15 @@ if __name__ == "__main__":
                 "Margin of Safety": f"{margin_of_safety:.2f}%",
                 "Verdict": verdict
             })
+    return results
 
-    # Print results in a clean table
-    if results:
-        results_df = pd.DataFrame(results)
-        print("\n--- Intrinsic Value Analysis (Simplified DCF Model) ---")
-        print(results_df.to_string(index=False))
-        print("\nDisclaimer: This is for educational purposes only and not financial advice.")
+if __name__ == "__main__":
+    top_companies = get_sp500_tickers()
+    all_results = analyze_companies(top_companies)
+    mag7_results = [r for r in all_results if r["Ticker"] in MAG7]
+
+    # Create and display only the Magnificent 7 table
+    mag7_df = pd.DataFrame(mag7_results)
+    print("\n--- Magnificent 7 Intrinsic Value Analysis (Simplified DCF Model) ---")
+    print(mag7_df.to_string(index=False))
+    print("\nDisclaimer: This is for educational purposes only and not financial advice.")

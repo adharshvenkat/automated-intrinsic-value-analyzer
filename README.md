@@ -1,17 +1,45 @@
 # Automated Intrinsic Value Analyzer
 
-This project contains a Python script that analyzes stock intrinsic value and runs daily using GitHub Actions.
+This script provides a production-quality, automated analysis of two key groups of public companies:
 
-## Overview
+- **Magnificent 7**: The seven largest and most influential US tech companies.
+- **Slatwards**: A curated list of high-potential, innovative, or disruptive companies across various sectors and themes (excluding any overlap with the Magnificent 7).
 
-The script performs the following actions:
-1.  Fetches the current list of S&P 500 company tickers from Wikipedia.
-2.  For a sample of companies, it retrieves key financial data using the `yfinance` library.
-3.  It calculates an estimated intrinsic value based on a simplified **Discounted Cash Flow (DCF)** model.
-4.  It prints a summary table comparing the calculated intrinsic value against the current stock price.
+For each company in both groups, the script computes:
 
-## Automation
-This script is configured to run automatically every day at 8:00 AM UTC via a GitHub Actions workflow. The results of each daily run can be viewed in the "Actions" tab of this repository.
+- **Intrinsic Value per Share** using a simplified Discounted Cash Flow (DCF) model
+- **Current Market Price**
+- **Margin of Safety** (relative difference between intrinsic value and market price)
+- **Valuation Verdict** (Undervalued/Overvalued)
+- **Trailing P/E Ratio** (if available)
+- **P/E Verdict** (High/Low P/E based on a threshold)
 
-### Disclaimer
-**This is an educational tool and should not be used for making actual investment decisions.** The financial model is highly simplified, and the assumptions for growth and discount rates are fixed estimates. Real-world financial analysis requires deep, nuanced research.
+The results are displayed as two clear tables in the terminal:
+- One for the Magnificent 7
+- One for the Slatwards
+
+Each table combines both DCF and P/E analysis for easy comparison.
+
+## Usage
+
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Run the script:
+   ```bash
+   python main.py
+   ```
+
+## Notes
+- No API keys or credentials are required.
+- The script does not analyze the entire S&P 500, only the two focused lists.
+- All data is fetched live using Yahoo Finance via the `yfinance` package.
+- The script is for educational purposes only and not financial advice.
+
+## Customization
+- You can easily modify the `MAGNIFICENT_7` and `SLATWARDS` lists in `main.py` to analyze other companies or themes.
+
+---
+
+**Disclaimer:** This tool is for educational purposes only and not financial advice. Always do your own research before making investment decisions.

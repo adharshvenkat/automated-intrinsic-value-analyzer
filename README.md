@@ -1,6 +1,6 @@
 # Automated Intrinsic Value Analyzer
 
-This script provides a production-quality, automated analysis of two key groups of public companies:
+This script provides an automated analysis of two key groups of public companies:
 
 - **Magnificent 7**: The seven largest and most influential US tech companies.
 - **Slatwards**: A curated list of high-potential, innovative, or disruptive companies across various sectors and themes (excluding any overlap with the Magnificent 7).

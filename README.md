@@ -38,7 +38,7 @@ Each table combines both DCF and P/E analysis for easy comparison.
 - The script is for educational purposes only and not financial advice.
 
 ## Customization
-- You can easily modify the `MAGNIFICENT_7` and `SLATWARDS` lists in `main.py` to analyze other companies or themes.
+- You can easily modify the `MAGNIFICENT_7` and `STALWARTS` lists in `main.py` to analyze other companies or themes.
 
 ---
 

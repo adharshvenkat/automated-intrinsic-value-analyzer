@@ -3,7 +3,7 @@
 This script provides an automated analysis of two key groups of public companies:
 
 - **Magnificent 7**: The seven largest and most influential US tech companies.
-- **Slatwards**: A curated list of high-potential, innovative, or disruptive companies across various sectors and themes (excluding any overlap with the Magnificent 7).
+- **Stalwarts**: A curated list of high-potential, innovative, or disruptive companies across various sectors and themes (excluding any overlap with the Magnificent 7).
 
 For each company in both groups, the script computes:
 
@@ -16,7 +16,7 @@ For each company in both groups, the script computes:
 
 The results are displayed as two clear tables in the terminal:
 - One for the Magnificent 7
-- One for the Slatwards
+- One for the Stalwarts
 
 Each table combines both DCF and P/E analysis for easy comparison.
 
